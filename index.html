@@ -1,0 +1,33 @@
+<!--
+Copyright © 2013-2021 DataYes, All Rights Reserved.
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width,maximum-scale=1,minimum-scale=1,initial-scale=1,user-scalable=no,shrink-to-fit=no"
+    />
+    <meta name="renderer" content="webkit" />
+    <base href="/" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="description" content="description of website" />
+    <meta name="keywords" content="keywords" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <title>New Page Title</title>
+    <!-- dev 环境会根据 configs/hosts-*.js 注入, rancher 上会根据id="hosts"替换下面内容 -->
+    <script id="hosts">
+      window._config = JSON.parse('%HOSTS%');
+    </script>
+    <!--<link rel="stylesheet" type="text/css" media="screen" />-->
+    <!--<script async src="//www.google-analytics.com/analytics.js"></script>-->
+    <!--<script type="text/javascript"></script>-->
+    <style></style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
