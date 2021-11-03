@@ -13,3 +13,18 @@ const build: BuildOptions = {
   sourcemap: VITE_APP_SOURCEMAP, // 构建后是否生成 source map文件
 };
 export default build;
+
+// npm i vite-plugin-singlefile -D
+// build: {
+// 		target: "esnext",
+// 		assetsInlineLimit: 100000000,
+// 		chunkSizeWarningLimit: 100000000,
+// 		cssCodeSplit: false,
+// 		brotliSize: false,
+// 		rollupOptions: {
+// 			inlineDynamicImports: true,
+// 			output: {
+// 				manualChunks: () => "everything.js",
+// 			},
+// 		},
+// 	},

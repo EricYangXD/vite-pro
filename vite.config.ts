@@ -8,8 +8,10 @@ import hosts from './env/hosts-dev.json';
 // import createVitePlugins from './plugins';
 import build from './config/build';
 import { VITE_APP_BASE, VITE_APP_PORT, VITE_APP_OPEN } from './config';
+import { environmentVariable } from './src/utils';
 import proxy from './config/setupProxy';
 import { viteMockServe } from 'vite-plugin-mock';
+import { viteSingleFile } from 'vite-plugin-singlefile';
 
 // export default defineConfig((configEnv) => {
 //   return {
@@ -18,14 +20,15 @@ import { viteMockServe } from 'vite-plugin-mock';
 //   };
 // });
 
+// console.log('process.env', process.env.VITE_USER_NODE_ENV, process.env.NODE_ENV);
 // const localEnabled = process.env.USE_MOCK || false;
 // const prodEnabled = process.env.USE_CHUNK_MOCK || false;
 // console.log('localEnabled, prodEnabled', localEnabled, prodEnabled);
 
-// defineConfig
-export default ({ command }: ConfigEnv): UserConfigExport => {
+// defineConfig  : ConfigEnv  : UserConfigExport
+export default defineConfig(({ command, mode }: ConfigEnv) => {
   const prodMock = false;
-  // command: "serve" 等...
+  // command: "serve" | "build"
   return {
     base: VITE_APP_BASE,
     server: {
@@ -37,6 +40,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
     plugins: [
       // createVitePlugins(),
       reactRefresh(),
+      viteSingleFile(),
       vitePluginImp({
         libList: [
           {
@@ -60,7 +64,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'),
+        '@': path.resolve(__dirname, './src'),
         initial: path.resolve(__dirname, './src/initial'),
         utils: path.resolve(__dirname, './src/utils'),
         components: path.resolve(__dirname, './src/components'),
@@ -77,10 +81,11 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
           javascriptEnabled: true,
         },
         scss: {
+          // 注意路径后面的分号
           additionalData: '@import "./src/assets/scss/varible.scss";',
         },
       },
     },
     build,
   };
-};
+}) as UserConfigExport;

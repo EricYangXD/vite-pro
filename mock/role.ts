@@ -1,6 +1,19 @@
 import { MockMethod } from 'vite-plugin-mock';
 export default [
   {
+    url: '/api/login',
+    method: 'get',
+    response: ({ query }) => {
+      return {
+        code: 0,
+        message: 'ok',
+        data: {
+          login: 1,
+        },
+      };
+    },
+  },
+  {
     url: '/api/getRoleById',
     method: 'get',
     response: ({ query }) => {
