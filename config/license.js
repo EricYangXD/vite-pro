@@ -1,5 +1,3 @@
-/** Copyright © 2013-2021 DataYes, All Rights Reserved. */
-
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const path = require("path");
